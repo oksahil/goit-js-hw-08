@@ -44,8 +44,8 @@ e.preventDefault();
 
 function readLocalStorage(forms) {
     console.log("on page load");
-        formsTextContent = localStorage.getItem('feedback-form-state') || "";
-        parseFormsTextContent = JSON.parse(formsTextContent) || "";
+       const formsTextContent = localStorage.getItem('feedback-form-state') || "";
+       const parseFormsTextContent = JSON.parse(formsTextContent) || "";
         email.value = parseFormsTextContent.email || "";
         message.value = parseFormsTextContent.message || "";
         console.log("input all fields-2");
