@@ -5,7 +5,7 @@ const throttle = require('lodash.throttle');
 
 form.addEventListener("submit", formSubmit);
 form.addEventListener("input", throttle(formInputSave, 500));
-
+window.addEventListener("load", readLocalStorage);
 readLocalStorage();
 function formInputSave(e) {
     try
@@ -45,7 +45,6 @@ e.preventDefault();
 function readLocalStorage(forms) {
     try {
         formsTextContent = localStorage.getItem('feedback-form-state') || "";
-        // console.log("text", formsTextContent);
         parseFormsTextContent = JSON.parse(formsTextContent) || "";
         email.value = parseFormsTextContent.email || "";
         message.value = parseFormsTextContent.message || "";
