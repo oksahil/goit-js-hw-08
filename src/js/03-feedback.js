@@ -9,20 +9,18 @@ document.addEventListener("DOMContentLoaded", readLocalStorage);
 
 readLocalStorage();
 function formInputSave(e) {
-    try {
+   
     const formElements = e.currentTarget.elements;
-    const email = formElements.email.value;
-    const message = formElements.message.value;
+    // console.log(formElements);
+    const emailValue = formElements.email.value;
+    const messageValue = formElements.message.value;
     const formDataSave = {
-        email,
-        message,
+        emailValue,
+        messageValue,
       };
     const forms = localStorage.setItem('feedback-form-state', JSON.stringify(formDataSave));
         return forms;
-    }
-    catch {
-        console.log("input all fields-1");
-    }
+      
 }
 
 function clearLocalStorage() {
@@ -32,22 +30,24 @@ function clearLocalStorage() {
 function formSubmit(e) {
 e.preventDefault();
     const formElements = e.currentTarget.elements;
-    const email = formElements.email.value;
-    const message = formElements.message.value;
-    if (email === "" || message === "") {
+    const emailValue = formElements.email.value;
+    const messageValue = formElements.message.value;
+    if (emailValue === "" || messageValue === "") {
     return console.log("Please fill in all the fields!");
     }
-    console.log(`Email: ${email}, message: ${message}`);
+    console.log(`Email: ${emailValue}, message: ${messageValue}`);
     form.reset();
     clearLocalStorage();
 }
 
 function readLocalStorage(forms) {
-    console.log("on page load");
-       const formsTextContent = localStorage.getItem('feedback-form-state') || "";
-       const parseFormsTextContent = JSON.parse(formsTextContent) || "";
-        email.value = parseFormsTextContent.email || "";
-        message.value = parseFormsTextContent.message || "";
-        console.log("input all fields-2");
+    const formsTextContent = localStorage.getItem('feedback-form-state') || "";
+    try 
+       {const parseFormsTextContent = JSON.parse(formsTextContent) || "";
+        email.value = parseFormsTextContent.emailValue || "";
+        message.value = parseFormsTextContent.messageValue || "";
+    }
+    catch 
+        {console.log("input all fields");}
 }
 
