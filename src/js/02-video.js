@@ -11,17 +11,17 @@ player.setCurrentTime(timeUpdateFetch());
 
 function timeUpdateFetch() {
     const timeSecond = JSON.parse(localStorage.getItem('videoplayer-current-time'));
-    console.log(timeSecond);
+    // console.log(timeSecond);
     return timeSecond;
 }
 
 function onTimeUpdateSave(timeObject) {
-console.log(timeObject.seconds);
+// console.log(timeObject.seconds);
 localStorage.setItem('videoplayer-current-time', JSON.stringify(timeObject.seconds));
 }
 
 function pauseTimeUpdateSave(timeObject) {
-console.log(timeObject.seconds);
+// console.log(timeObject.seconds);
 localStorage.setItem('videoplayer-current-time', JSON.stringify(timeObject.seconds));
 }
 
