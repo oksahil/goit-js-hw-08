@@ -4,11 +4,12 @@ const message = document.querySelector('[name="message"]');
 const throttle = require('lodash.throttle');
 
 form.addEventListener("submit", formSubmit);
-// form.addEventListener("input", formInputSave);
 form.addEventListener("input", throttle(formInputSave, 500));
 
 readLocalStorage();
 function formInputSave(e) {
+    try
+    {
     const formElements = e.currentTarget.elements;
     const email = formElements.email.value;
     const message = formElements.message.value;
@@ -17,7 +18,11 @@ function formInputSave(e) {
         message,
       };
     const forms = localStorage.setItem('feedback-form-state', JSON.stringify(formDataSave));
-    return forms;
+        return forms;
+    } catch
+    {
+        console.log("input all fields")
+    }
 }
 
 function clearLocalStorage() {
@@ -38,9 +43,14 @@ e.preventDefault();
 }
 
 function readLocalStorage(forms) {
-    formsTextContent = localStorage.getItem('feedback-form-state') || "";
-    parseFormsTextContent = JSON.parse(formsTextContent) || "";
-    email.value = parseFormsTextContent.email || "";
-    message.value = parseFormsTextContent.message || "";
+    try {
+        formsTextContent = localStorage.getItem('feedback-form-state') || "";
+        // console.log("text", formsTextContent);
+        parseFormsTextContent = JSON.parse(formsTextContent) || "";
+        email.value = parseFormsTextContent.email || "";
+        message.value = parseFormsTextContent.message || "";
+    } catch {
+        console.log("input all fields")
+    }
 }
 
