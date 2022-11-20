@@ -42,12 +42,13 @@ e.preventDefault();
 
 function readLocalStorage(forms) {
     const formsTextContent = localStorage.getItem('feedback-form-state') || "";
-    try 
-       {const parseFormsTextContent = JSON.parse(formsTextContent) || "";
+    try {
+        const parseFormsTextContent = JSON.parse(formsTextContent) || "";
         email.value = parseFormsTextContent.emailValue || "";
         message.value = parseFormsTextContent.messageValue || "";
-    }
-    catch 
-        {console.log("input all fields");}
+    } catch
+    {
+        console.log("input all fields");
+    }  
+    
 }
-
