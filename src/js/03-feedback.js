@@ -5,7 +5,7 @@ const throttle = require('lodash.throttle');
 
 form.addEventListener("submit", formSubmit);
 form.addEventListener("input", throttle(formInputSave, 500));
-window.addEventListener("DOMContentLoaded", readLocalStorage);
+document.addEventListener("onload", readLocalStorage);
 
 readLocalStorage();
 function formInputSave(e) {
