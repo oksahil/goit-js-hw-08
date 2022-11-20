@@ -9,8 +9,7 @@ document.addEventListener("DOMContentLoaded", readLocalStorage);
 
 readLocalStorage();
 function formInputSave(e) {
-    try
-    {
+    try {
     const formElements = e.currentTarget.elements;
     const email = formElements.email.value;
     const message = formElements.message.value;
@@ -20,9 +19,9 @@ function formInputSave(e) {
       };
     const forms = localStorage.setItem('feedback-form-state', JSON.stringify(formDataSave));
         return forms;
-    } catch
-    {
-        console.log("input all fields")
+    }
+    catch {
+        console.log("input all fields-1");
     }
 }
 
@@ -44,13 +43,14 @@ e.preventDefault();
 }
 
 function readLocalStorage(forms) {
+    console.log("on page load");
     try {
         formsTextContent = localStorage.getItem('feedback-form-state') || "";
         parseFormsTextContent = JSON.parse(formsTextContent) || "";
         email.value = parseFormsTextContent.email || "";
         message.value = parseFormsTextContent.message || "";
     } catch {
-        console.log("input all fields")
+        console.log("input all fields-2");
     }
 }
 
