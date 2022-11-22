@@ -4,14 +4,13 @@ const message = document.querySelector('[name="message"]');
 const throttle = require('lodash.throttle');
 
 form.addEventListener("submit", formSubmit);
-form.addEventListener("input", throttle(formInputSave, 500));
+form.addEventListener("input", throttle(formInputSave), 500);
 document.addEventListener("DOMContentLoaded", readLocalStorage);
 
 readLocalStorage();
 function formInputSave(e) {
    
     const formElements = e.currentTarget.elements;
-    // console.log(formElements);
     const emailValue = formElements.email.value;
     const messageValue = formElements.message.value;
     const formDataSave = {
@@ -32,10 +31,14 @@ e.preventDefault();
     const formElements = e.currentTarget.elements;
     const emailValue = formElements.email.value;
     const messageValue = formElements.message.value;
+    const formDataSave = {
+        emailValue,
+        messageValue,
+      };
     if (emailValue === "" || messageValue === "") {
     return console.log("Please fill in all the fields!");
     }
-    console.log(`Email: ${emailValue}, message: ${messageValue}`);
+    console.log(formDataSave);
     form.reset();
     clearLocalStorage();
 }
@@ -48,7 +51,8 @@ function readLocalStorage(forms) {
         message.value = parseFormsTextContent.messageValue || "";
     } catch
     {
-        console.log("input all fields");
+        email.value = '';
+        message.value = '';
     }  
     
 }

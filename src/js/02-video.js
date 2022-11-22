@@ -10,18 +10,19 @@ player.pause('timeupdate', pauseTimeUpdateSave);
 player.setCurrentTime(timeUpdateFetch());
 
 function timeUpdateFetch() {
+    if (localStorage.getItem('videoplayer-current-time') !== null) {
     const timeSecond = JSON.parse(localStorage.getItem('videoplayer-current-time'));
-    // console.log(timeSecond);
     return timeSecond;
-}
+    }
+    timeSecond = 0;
+    return timeSecond;
+    }
 
 function onTimeUpdateSave(timeObject) {
-// console.log(timeObject.seconds);
 localStorage.setItem('videoplayer-current-time', JSON.stringify(timeObject.seconds));
 }
 
 function pauseTimeUpdateSave(timeObject) {
-// console.log(timeObject.seconds);
 localStorage.setItem('videoplayer-current-time', JSON.stringify(timeObject.seconds));
 }
 
